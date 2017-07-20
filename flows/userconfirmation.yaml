@@ -17,7 +17,7 @@ states:
     ask_name:
         component: meya.input_string
         properties:
-            text: What's your name?
+            text: What's your first name?
             output: first_name
             scope: user
     confirm_name:
@@ -37,8 +37,10 @@ states:
         properties:
             text: "When is your birthday?"
             output: birth_date
-            timezone: Asia/Kolkata
+            timezone: UTC
             scope: user
+    confirm_birth_date:
+        component: format_birthdate
     check_phone:
         component: meya.conditional_exists
         properties:

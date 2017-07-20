@@ -6,7 +6,7 @@ API_URL = (
     "http://api.onehop.co/v1/sms/send/?mobile_number={phone}"
     "&sms_text={message}&label={label}&sender_id=TESTIN&apiKey={api_key}&encoding=plaintext"
 )
-API_KEY = 'sm03205f8bbb634adba11be82f16b4ffa0'
+API_KEY = self.db.bot.settings["sms_api_key"]
 
 
 def generate_otp(n):
