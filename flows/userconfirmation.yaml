@@ -13,7 +13,7 @@ states:
         properties:
             text: "Welcome back, {{ user.first_name }}!"
         transitions:
-            next: check_phone
+            next: check_birthdate
     ask_name:
         component: meya.input_string
         properties:
@@ -37,7 +37,7 @@ states:
         properties:
             text: "When is your birthday?"
             output: birth_date
-            timezone: UTC
+            timezone: Asia/Dili
             scope: user
     confirm_birth_date:
         component: format_birthdate
