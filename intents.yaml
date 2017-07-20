@@ -1,0 +1,17 @@
+-   flow: greetings
+    intent: meya.greetings
+-   flow: userconfirmation
+    intent: meya.keyword
+    settings:
+        ignorecase: true
+        keyword: userconfirmation
+-   flow: verifyOtp
+    intent: meya.keyword
+    settings:
+        ignorecase: true
+        keyword: verifyotp
+-   flow: welcome
+    intent: meya.keyword
+    settings:
+        ignorecase: true
+        keyword: start

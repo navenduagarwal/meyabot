@@ -1,0 +1,25 @@
+name: welcome  # <-- this is the name of flow. It must be unique for your bot
+states:  # <-- a `flow` is a collection of states that run in order
+    first:
+        component: meya.text  # <-- this is a simple built-in component
+        properties:
+            text: Hi! I'm the SBI General DemoBot. # <-- how the bot responds
+        delay:
+            relative: 2  # <-- put a 2 second delay
+    second:
+        component: meya.text
+        properties:
+            text: May I verify few details, before proceeding further...
+        delay:
+            relative: 2  # <-- another 2 second delay
+    third:
+        flow: userconfirmation  # <-- you can call other flows
+        transitions:
+            complete: done
+        delay:
+            relative: 5
+    done:
+        component: meya.text
+        properties:
+            text: ...one more thing. Try saying "weather", "joke" or "gif".
+        return: true

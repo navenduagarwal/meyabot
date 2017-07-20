@@ -1,0 +1,67 @@
+name: userconfirmation
+states:
+    check_name:
+        component: meya.conditional_exists
+        properties:
+            scope: user
+            key: first_name
+        transitions:
+            exists: welcome_back
+            notexists: ask_name
+    welcome_back:
+        component: meya.text
+        properties:
+            text: "Welcome back, {{ user.first_name }}!"
+        transitions:
+            next: check_phone
+    ask_name:
+        component: meya.input_string
+        properties:
+            text: What's your name?
+            output: first_name
+            scope: user
+    confirm_name:
+        component: meya.text
+        properties:
+            text: "Nice to meet you {{ user.first_name }}!"
+    check_birthdate:
+        component: meya.conditional_exists
+        properties:
+            scope: user
+            key: birth_date
+        transitions:
+            exists: check_phone
+            notexists: ask_birth_date
+    ask_birth_date:
+        component: meya.input_datetime
+        properties:
+            text: "When is your birthday?"
+            output: birth_date
+            timezone: Asia/Kolkata
+            scope: user
+    check_phone:
+        component: meya.conditional_exists
+        properties:
+            scope: user
+            key: mobile_number
+        transitions:
+            exists: verify_otp
+            notexists: ask_phone
+    ask_phone:
+        component: meya.input_pattern
+        properties:
+            text: What's your mobile number?
+            pattern: ^(?P<capture_mobile>[789]\d{9})$
+            require_match: true
+            output: mobile_number
+            scope: user
+        transitions:
+            next: confirm_phone
+    confirm_phone:
+        component: meya.text
+        properties:
+            text: "Thank you for confirming your number as {{ user.mobile_number }}!"
+    verify_otp:
+        flow: verifyOtp
+        transitions:
+            complete: done

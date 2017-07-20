@@ -1,0 +1,27 @@
+name: verifyOtp
+states:
+    send:
+        component: generate_OTP
+        transitions:
+            success: ask
+            failure: fail_send
+    ask:
+        component: meya.input_integer
+        properties:
+            text: Please confirm OTP shared on your mobile number
+            output: input_otp
+    check_otp:
+        component: check_OTP
+        transitions:
+            verified: allow
+            failure: ask
+    allow:
+        flow: verifyBirthdate
+        transitions:
+            complete: done
+        return: true
+    fail_send:
+        component: meya.text
+        properties:
+        text: Sorry, SMS service is unavailable, Could not verify your number
+        return: true
