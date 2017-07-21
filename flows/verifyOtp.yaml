@@ -16,7 +16,11 @@ states:
             verified: allow
             failure: ask
     allow:
-        flow: verifyBirthdate
+        component: meya.text
+        properties:
+        text: Searching Policy by Mobile Number
+    policy:
+        component: find_policy
         transitions:
             complete: done
         return: true
