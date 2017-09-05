@@ -1,0 +1,20 @@
+name: changemobile
+states:
+    ask_phone:
+        component: meya.input_pattern
+        properties:
+            text: What's your new mobile number?
+            pattern: ^(?P<capture_mobile>[789]\d{9})$
+            require_match: true
+            output: mobile_number
+            scope: user
+        transitions:
+            next: confirm_phone
+    confirm_phone:
+        component: meya.text
+        properties:
+            text: "Thank you for confirming your number as {{ user.mobile_number }}!"
+    verify_otp:
+        flow: verifyOtp
+        transitions:
+            complete: done

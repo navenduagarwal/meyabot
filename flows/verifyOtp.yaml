@@ -18,7 +18,9 @@ states:
     allow:
         component: meya.text
         properties:
-        text: Searching Policy by Mobile Number
+            text: Searching Policy details using mobile number...
+        delay:
+            relative: 2  # <-- another 2 second delay
     policy:
         component: find_policy
         transitions:

@@ -3,7 +3,7 @@ import requests
 from meya import Component
 
 def getPolicy(number, auth_key):
-    url = "http://verify.sparshik.com:8000/api/search/"
+    url = "https://smartvision.cybernaptics.mu/api/insurancepolicy/custom-search/"
     key = auth_key
     auth = 'Token {}'.format(key)
     querystring = {"insuredMobileNumber": number}
@@ -21,7 +21,7 @@ def getPolicy(number, auth_key):
                 for policy in policies:
                     policyNumber += policy['number'] + ';'
             else:
-                policyNumber = policies[0]['number']
+                policyNumber += policies[0]['number']
         else:
             policyNumber = 'No Policy found'
     else:

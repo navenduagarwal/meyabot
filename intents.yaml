@@ -1,3 +1,8 @@
+-   flow: changemobile
+    intent: meya.keyword
+    settings:
+        ignorecase: true
+        keyword: changemobile
 -   flow: greetings
     intent: meya.greetings
 -   flow: userconfirmation
